@@ -41,6 +41,11 @@ public class LocationController {
         }
     }
 
+    /**
+     * Retrieves all events with their corresponding locations.
+     *
+     * @return ResponseEntity containing a list of EventWithLocation objects
+     */
     @GetMapping("/get-all-events")
     public ResponseEntity<List<EventWithLocation>> getAllEventsWithLocations() {
         List<EventWithLocation> combinedData = eventLocationService.getEventLocations(events, latitudes, longitudes);
@@ -48,6 +53,12 @@ public class LocationController {
         return ResponseEntity.ok(combinedData);
     }
 
+    /**
+     * Retrieves the location of a specific event.
+     *
+     * @param eventId The ID of the event
+     * @return ResponseEntity containing the EventWithLocation object for the specified event
+     */
     @GetMapping("/get-event-location/{eventId}")
     public ResponseEntity<EventWithLocation> getEventLocation(@PathVariable String eventId) {
         Optional<Event> particularEvent = events.stream()

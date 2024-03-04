@@ -14,13 +14,27 @@ import java.util.stream.Collectors;
 
 @Service
 public class EventLocationService {
-
+    /**
+     * Retrieves a list of events with their corresponding locations.
+     *
+     * @param events     List of events
+     * @param latitudes  List of latitude locations
+     * @param longitudes List of longitude locations
+     * @return List of EventWithLocation objects
+     */
     public List<EventWithLocation> getEventLocations(List<Event> events, List<Location> latitudes, List<Location> longitudes) {
         return events.stream()
                 .map(event -> createEventWithLocation(event, latitudes, longitudes))
                 .collect(Collectors.toList());
     }
-
+    /**
+     * Retrieves the location of a specific event.
+     *
+     * @param event      The event
+     * @param latitudes  List of latitude locations
+     * @param longitudes List of longitude locations
+     * @return EventWithLocation object for the specified event
+     */
     public EventWithLocation getSpecificEventLocation(Event event, List<Location> latitudes, List<Location> longitudes) {
         return createEventWithLocation(event, latitudes, longitudes);
     }
